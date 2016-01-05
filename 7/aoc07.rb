@@ -8,6 +8,11 @@ class Circuit
     end
   end
 
+  def override newline
+      line_item = newline.split(' -> ')
+      @gates[line_item[1].chomp] = line_item[0]
+  end
+
   def evaluate output
     input = @gates[output]
     if input
@@ -26,6 +31,7 @@ class Circuit
     end
   end
 
+  private
   def eval2 exp2
     case exp2[1]
     when 'AND'
@@ -42,4 +48,8 @@ class Circuit
 end
 
 circuit = Circuit.new
-puts circuit.evaluate 'a'
+pt1 = circuit.evaluate 'a'
+puts pt1
+circuit2 = Circuit.new
+circuit2.override pt1+' -> b'
+puts circuit2.evaluate 'a'
