@@ -1,8 +1,7 @@
 def look_say input
-  output = input.scan(/((\d)\2*)/).map(&:first).each_with_object "" do |sc, str|
+  output = input.scan(/((.)\2*)/).map{|x| x[0]}.each_with_object "" do |sc, str|
       str << "#{sc.length}#{sc[0]}"
     end
-  output
 end
 
 f = File.new("input10.txt")
